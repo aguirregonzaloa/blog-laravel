@@ -48,10 +48,16 @@ class Post extends Model
     //function using in AppServiceProvider()->boot()
     //allows to show the Archives sidebar
     public static function archives(){
-    return Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
-        ->groupBy('year','month')
-        ->orderByRaw('min(created_at) desc')
-        ->get()->toArray();
+    // return Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+    //     ->groupBy('year','month')
+    //     ->orderByRaw('min(created_at) desc')
+    //     ->get()->toArray();
+         // return static::selectRaw("date_part('year', created_at) as year,to_char((created_at)::date , 'Month') as month, count(*) as published")
+         //    ->groupBy('year','month')
+         //    ->orderByRaw('min(created_at) desc')
+         //    ->get()
+         //    ->toArray();
+        return Post::all();
     }
     
     
