@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Post extends Model
 {
@@ -52,12 +53,17 @@ class Post extends Model
     //     ->groupBy('year','month')
     //     ->orderByRaw('min(created_at) desc')
     //     ->get()->toArray();
+        
+        return DB::table('posts')->selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+        ->groupBy('year','month')
+        ->orderByRaw('min(created_at) desc')
+        ->get()->toArray();
          // return static::selectRaw("date_part('year', created_at) as year,to_char((created_at)::date , 'Month') as month, count(*) as published")
          //    ->groupBy('year','month')
          //    ->orderByRaw('min(created_at) desc')
          //    ->get()
          //    ->toArray();
-        return Post::all();
+        // return Post::all();
     }
     
     
