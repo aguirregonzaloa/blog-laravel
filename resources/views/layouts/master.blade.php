@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" ng-app="appjs">
+<html lang="en">
 
   <head>
 
